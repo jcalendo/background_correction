@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import (QApplication, QDialog, QFileDialog, QFrame,
                              QGridLayout, QInputDialog, QLabel, QPushButton)
 from PyQt5.QtCore import pyqtSlot
 
-import CorrectBackground
+import background_correction
 
 
 class Dialog(QDialog):
@@ -111,7 +111,7 @@ class Dialog(QDialog):
         bright_img = self.bright_file[-1]
         dark_img = self.dark_file[-1]
 
-        CorrectBackground.process_folder(input_dir, bright_img, dark_img, output_dir)
+        background_correction.process_folder(input_dir, bright_img, dark_img, output_dir)
 
         print("\nIllumination Correction Complete")
 
