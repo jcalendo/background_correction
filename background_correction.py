@@ -22,10 +22,9 @@ def correct_background(input_img, brightfield_img, darkfield_img):
 
     # Calculated constant that can be applied in place of 255
     # C = np.mean(specimen) * (1 / np.mean(cv2.divide(numerator, divisor)))
-
     corrected = numerator / divisor * 255
 
-    return corrected
+    return corrected.astype('float32')
 
 
 def process_folder(src_dir, bright, dark, out_dir):
@@ -59,6 +58,8 @@ def main():
             os.makedirs(os.path.join(img_dir, "corrected_images"))
     
     out_dir = os.path.join(img_dir, "corrected_images")
+    
+    np.seterr(divide='ignore', invalid='ignore')
 
     process_folder(img_dir, bf, df, out_dir)
 
